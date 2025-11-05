@@ -1,0 +1,1 @@
+recursive-include src/splent_feature_confirmemail/assets/dist *.js *.css *.map
