@@ -1,6 +1,6 @@
 from flask import flash, redirect, render_template, url_for
 from flask_login import login_user
-from splent_feature_confirmemail import confirmemail_bp
+from splent_io.splent_feature_confirmemail import confirmemail_bp
 
 
 @confirmemail_bp.route("/confirmemail", methods=["GET"])
@@ -10,7 +10,7 @@ def index():
 
 @confirmemail_bp.route("/confirm_user/<token>", methods=["GET"])
 def confirm_user(token):
-    from splent_feature_confirmemail.services import ConfirmemailService  # ⬅️ IMPORT AQUÍ
+    from splent_io.splent_feature_confirmemail.services import ConfirmemailService  # ⬅️ IMPORT AQUÍ
     confirmemail_service = ConfirmemailService()
 
     try:

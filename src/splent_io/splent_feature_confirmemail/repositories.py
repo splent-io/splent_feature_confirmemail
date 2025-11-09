@@ -1,4 +1,4 @@
-from splent_feature_confirmemail.models import Confirmemail
+from splent_io.splent_feature_confirmemail.models import Confirmemail
 from splent_framework.repositories.BaseRepository import BaseRepository
 
 

@@ -7,7 +7,7 @@ from itsdangerous import (
 )
 from dotenv import load_dotenv
 
-from splent_feature_confirmemail.repositories import ConfirmemailRepository
+from splent_io.splent_feature_confirmemail.repositories import ConfirmemailRepository
 from splent_framework.services.BaseService import BaseService
 
 # Load environment variables
@@ -55,7 +55,7 @@ class ConfirmemailService(BaseService):
             raise Exception("The confirmation link has been tampered with.")
 
         # Import AuthenticationService inside the method to avoid circular imports
-        from splent_feature_auth.services import AuthenticationService
+        from splent_io.splent_feature_auth.services import AuthenticationService
         user = AuthenticationService().get_by_email(email, active=False)
         user.active = True
         self.repository.session.commit()
