@@ -6,3 +6,7 @@ confirmemail_service = ConfirmemailService()
 
 def init_feature(app):
     app.confirmemail_service = confirmemail_service
+
+
+def inject_context_vars(app):
+    return {}
