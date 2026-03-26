@@ -10,3 +10,6 @@ def init_feature(app):
 
 def inject_context_vars(app):
     return {}
+
+# Register signal handlers (send confirmation on user registration)
+from splent_io.splent_feature_confirmemail import signals  # noqa: F401
