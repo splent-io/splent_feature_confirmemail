@@ -10,7 +10,10 @@ def index():
 
 @confirmemail_bp.route("/confirm_user/<token>", methods=["GET"])
 def confirm_user(token):
-    from splent_io.splent_feature_confirmemail.services import ConfirmemailService  # ⬅️ IMPORT AQUÍ
+    from splent_io.splent_feature_confirmemail.services import (
+        ConfirmemailService,
+    )  # ⬅️ IMPORT AQUÍ
+
     confirmemail_service = ConfirmemailService()
 
     try:

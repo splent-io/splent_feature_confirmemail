@@ -13,12 +13,15 @@ from splent_framework.services.BaseService import BaseService
 # Load environment variables
 load_dotenv()
 
+
 class ConfirmemailService(BaseService):
     def __init__(self):
         super().__init__(ConfirmemailRepository())
         self.repository = ConfirmemailRepository()
         self.CONFIRM_EMAIL_SALT = os.getenv("CONFIRM_EMAIL_SALT", "sample_salt")
-        self.CONFIRM_EMAIL_TOKEN_MAX_AGE = os.getenv("CONFIRM_EMAIL_TOKEN_MAX_AGE", 3600)
+        self.CONFIRM_EMAIL_TOKEN_MAX_AGE = os.getenv(
+            "CONFIRM_EMAIL_TOKEN_MAX_AGE", 3600
+        )
 
     def get_serializer(self):
         return URLSafeTimedSerializer(current_app.config["SECRET_KEY"])
@@ -56,6 +59,7 @@ class ConfirmemailService(BaseService):
 
         # Import AuthenticationService inside the method to avoid circular imports
         from splent_io.splent_feature_auth.services import AuthenticationService
+
         user = AuthenticationService().get_by_email(email, active=False)
         user.active = True
         self.repository.session.commit()
