@@ -1,32 +1,26 @@
-from selenium.common.exceptions import NoSuchElementException
-import time
+"""
+End-to-end tests for splent_feature_confirmemail.
 
+E2E tests drive a real browser via Selenium against the running
+application.  They are slow by design and should only verify
+critical user flows that cannot be covered by functional tests.
+
+Run with:  splent feature:test splent_feature_confirmemail --e2e
+"""
+
+import pytest
 from splent_framework.environment.host import get_host_for_selenium_testing
 from splent_framework.selenium.common import initialize_driver, close_driver
 
 
-def test_confirmemail_index():
+@pytest.fixture()
+def browser():
     driver = initialize_driver()
-
-    try:
-        host = get_host_for_selenium_testing()
-
-        # Open the index page
-        driver.get(f"{host}/confirmemail")
-
-        # Wait a little while to make sure the page has loaded completely
-        time.sleep(4)
-
-        try:
-            pass
-
-        except NoSuchElementException:
-            raise AssertionError("Test failed!")
-
-    finally:
-        # Close the browser
-        close_driver(driver)
+    yield driver
+    close_driver(driver)
 
 
-# Call the test function
-test_confirmemail_index()
+def test_confirmemail_index(browser):
+    host = get_host_for_selenium_testing()
+    browser.get(f"{host}/confirmemail")
+    assert browser.page_source is not None
