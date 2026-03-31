@@ -9,7 +9,11 @@ import os
 
 
 def inject_config(app):
-    app.config.update({
-        "CONFIRM_EMAIL_SALT": os.getenv("CONFIRM_EMAIL_SALT", "sample_salt"),
-        "CONFIRM_EMAIL_TOKEN_MAX_AGE": int(os.getenv("CONFIRM_EMAIL_TOKEN_MAX_AGE", "3600")),
-    })
+    app.config.update(
+        {
+            "CONFIRM_EMAIL_SALT": os.getenv("CONFIRM_EMAIL_SALT", "sample_salt"),
+            "CONFIRM_EMAIL_TOKEN_MAX_AGE": int(
+                os.getenv("CONFIRM_EMAIL_TOKEN_MAX_AGE", "3600")
+            ),
+        }
+    )
