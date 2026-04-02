@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "splent_feature_confirmemail"
-version = "1.2.13"
+version = "1.2.14"
 requires-python = ">=3.13"
 authors = [{ name = "DiversoLab", email = "diversolab@us.es" }]
 dependencies = [
@@ -26,7 +26,7 @@ description = "Email confirmation feature: token-based account verification flow
 
 [tool.splent.contract.provides]
 routes     = ["/confirm_user/<token>", "/confirmemail"]
-blueprints = ["confirmemail_bp"]
+blueprints = []
 models     = ["Confirmemail"]
 commands   = []
 hooks      = []
@@ -45,4 +45,4 @@ services  = ["ConfirmemailService"]
 templates = []
 models    = ["Confirmemail"]
 hooks     = []
-routes    = true
+routes    = false

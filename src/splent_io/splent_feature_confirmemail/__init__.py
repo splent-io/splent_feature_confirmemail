@@ -1,12 +1,13 @@
-from splent_framework.blueprints.base_blueprint import BaseBlueprint
-from .services import ConfirmemailService
+from splent_framework.blueprints.base_blueprint import create_blueprint
+from splent_framework.services.service_locator import register_service
 
-confirmemail_bp = BaseBlueprint("confirmemail", __name__, template_folder="templates")
-confirmemail_service = ConfirmemailService()
+from splent_io.splent_feature_confirmemail.services import ConfirmemailService
+
+confirmemail_bp = create_blueprint(__name__)
 
 
 def init_feature(app):
-    app.confirmemail_service = confirmemail_service
+    register_service(app, "ConfirmemailService", ConfirmemailService)
 
 
 def inject_context_vars(app):
